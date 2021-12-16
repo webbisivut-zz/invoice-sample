@@ -1,0 +1,511 @@
+<html>
+  <head>
+    <title>Invoice sample</title>
+    <style>
+      /* Wrapper */
+      #easy_invoice_wrapper {
+        width: 795px;
+        height: 100%;
+        font-family: 'sans-serif';
+        font-size: 13px;
+        background-color: #fff;
+        padding-bottom: 40px;
+      }
+
+      #easy_invoice_wrapper .easy_invoice_inner_wrapper {
+        padding: 40px;
+      }      
+
+      /* Header */
+      #easy_invoice_wrapper .easy_invoice_inner_wrapper .easy_invoice_header_wrapper {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      #easy_invoice_wrapper .easy_invoice_inner_wrapper .easy_invoice_header_wrapper .header_left .sender {
+        margin-bottom: 30px;
+      }
+
+      #easy_invoice_wrapper .easy_invoice_inner_wrapper .easy_invoice_header_wrapper .header_right .separator {
+        height: 1px;
+        width: 100%;
+        background: #222;
+        margin: 10px 0px;
+      }
+
+      #easy_invoice_wrapper .easy_invoice_inner_wrapper .easy_invoice_header_wrapper .header_right .header_right_wrapper {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      #easy_invoice_wrapper .easy_invoice_inner_wrapper .easy_invoice_header_wrapper .header_right .header_right_wrapper .left {
+        margin-right: 15px;
+      }
+
+      /* Middle content */
+      #easy_invoice_wrapper .easy_invoice_inner_wrapper .easy_invoice_content_wrapper  {
+        margin: 40px 0px;
+        padding: 20px 0px;
+      }
+
+      #easy_invoice_wrapper .easy_invoice_inner_wrapper .easy_invoice_content_wrapper .products_wrapper  {
+        border-top: 1px solid #222;
+        border-bottom: 1px solid #222;
+        padding: 10px 0px;
+      }
+
+      #easy_invoice_wrapper .easy_invoice_inner_wrapper .easy_invoice_content_wrapper .products_wrapper .header,
+      #easy_invoice_wrapper .easy_invoice_inner_wrapper .easy_invoice_content_wrapper .products_wrapper .product_row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+
+      #easy_invoice_wrapper .easy_invoice_inner_wrapper .easy_invoice_content_wrapper .products_wrapper .header .row_number,
+      #easy_invoice_wrapper .easy_invoice_inner_wrapper .easy_invoice_content_wrapper .products_wrapper .product_row .row_number {
+        display: flex;
+        flex: 0 0 15px;
+      }
+
+      #easy_invoice_wrapper .easy_invoice_inner_wrapper .easy_invoice_content_wrapper .products_wrapper .header .row_description,
+      #easy_invoice_wrapper .easy_invoice_inner_wrapper .easy_invoice_content_wrapper .products_wrapper .product_row .row_description {
+        display: flex;
+        flex: 4;
+      }
+
+      #easy_invoice_wrapper .easy_invoice_inner_wrapper .easy_invoice_content_wrapper .products_wrapper .header .row_product_number,
+      #easy_invoice_wrapper .easy_invoice_inner_wrapper .easy_invoice_content_wrapper .products_wrapper .product_row .row_product_number,
+      #easy_invoice_wrapper .easy_invoice_inner_wrapper .easy_invoice_content_wrapper .products_wrapper .header .row_total,
+      #easy_invoice_wrapper .easy_invoice_inner_wrapper .easy_invoice_content_wrapper .products_wrapper .product_row .row_total,
+      #easy_invoice_wrapper .easy_invoice_inner_wrapper .easy_invoice_content_wrapper .products_wrapper .header .row_vat,
+      #easy_invoice_wrapper .easy_invoice_inner_wrapper .easy_invoice_content_wrapper .products_wrapper .product_row .row_vat,
+      #easy_invoice_wrapper .easy_invoice_inner_wrapper .easy_invoice_content_wrapper .products_wrapper .header .row_qty,
+      #easy_invoice_wrapper .easy_invoice_inner_wrapper .easy_invoice_content_wrapper .products_wrapper .product_row .row_qty,
+      #easy_invoice_wrapper .easy_invoice_inner_wrapper .easy_invoice_content_wrapper .products_wrapper .header .row_unit_price,
+      #easy_invoice_wrapper .easy_invoice_inner_wrapper .easy_invoice_content_wrapper .products_wrapper .product_row .row_unit_price {
+        display: flex;
+        flex: 2;
+      }
+
+      #easy_invoice_wrapper .easy_invoice_inner_wrapper .easy_invoice_content_wrapper .products_wrapper .header .row,
+      #easy_invoice_wrapper .easy_invoice_inner_wrapper .easy_invoice_content_wrapper .products_wrapper .product_row .row {
+        margin-right: 5px;
+      }
+
+      #easy_invoice_wrapper .easy_invoice_inner_wrapper .easy_invoice_content_wrapper .products_wrapper .header .row {
+        font-weight: bold;
+      }
+
+      #easy_invoice_wrapper .easy_invoice_inner_wrapper .easy_invoice_content_wrapper .totals_col {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 15px;
+      }
+
+      #easy_invoice_wrapper .easy_invoice_inner_wrapper .easy_invoice_content_wrapper .totals_col .left {
+        margin-right: 35px;
+      }
+
+      /* Payment details, left side content */
+      #easy_invoice_wrapper .easy_invoice_payment_details_wrapper {
+        border-top: 2px solid #222;
+        border-bottom: 1px solid #222;
+        display: flex;
+        flex-direction: column;
+      }
+
+      #easy_invoice_wrapper .easy_invoice_payment_details_wrapper .top_header {
+        display: flex;
+        border-bottom: 1px dashed #222;
+        padding: 5px 0px;
+        justify-content: space-around;
+        font-size: 12px;
+      }
+
+      #easy_invoice_wrapper .easy_invoice_payment_details_wrapper .content {
+        display: flex;
+        flex-direction: row;
+      }
+
+      #easy_invoice_wrapper .easy_invoice_payment_details_wrapper .content .content_inner {
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 50%;
+      }
+
+      #easy_invoice_wrapper .easy_invoice_payment_details_wrapper .left {
+        display: flex;
+        flex-direction: row;
+      }
+
+      #easy_invoice_wrapper .easy_invoice_payment_details_wrapper .left .receiver_account_number,
+      #easy_invoice_wrapper .easy_invoice_payment_details_wrapper .left .receiver_signature,
+      #easy_invoice_wrapper .easy_invoice_payment_details_wrapper .left .from_account,
+      #easy_invoice_wrapper .easy_invoice_payment_details_wrapper .left .receiver,
+      #easy_invoice_wrapper .easy_invoice_payment_details_wrapper .left .payer {
+        display: flex;
+        justify-content: flex-end;
+        flex: 1;
+        border-right: 1px solid #222;
+        padding: 5px;
+        font-size: 10px;
+        text-align: right;
+      }
+
+      #easy_invoice_wrapper .easy_invoice_payment_details_wrapper .left .receiver_signature,
+      #easy_invoice_wrapper .easy_invoice_payment_details_wrapper .left .payer {
+        border-right: 0px;
+      }
+
+      #easy_invoice_wrapper .easy_invoice_payment_details_wrapper .left .receiver_account_number_content,
+      #easy_invoice_wrapper .easy_invoice_payment_details_wrapper .left .receiver_signature_content,
+      #easy_invoice_wrapper .easy_invoice_payment_details_wrapper .left .from_account_content,
+      #easy_invoice_wrapper .easy_invoice_payment_details_wrapper .left .receiver_address,
+      #easy_invoice_wrapper .easy_invoice_payment_details_wrapper .left .payer_address {
+        padding: 5px;
+        justify-content: flex-start;
+        flex: 4;
+        font-size: 13px;
+      }
+
+      #easy_invoice_wrapper .easy_invoice_payment_details_wrapper .left .receiver,
+      #easy_invoice_wrapper .easy_invoice_payment_details_wrapper .left .receiver_address {
+        border-bottom: 1px solid #222;
+      }   
+      
+      #easy_invoice_wrapper .easy_invoice_payment_details_wrapper .left .receiver_signature,
+      #easy_invoice_wrapper .easy_invoice_payment_details_wrapper .left .receiver_signature_content {
+        padding-top: 55px;
+        padding-bottom: 6px;
+      }
+
+      #easy_invoice_wrapper .easy_invoice_payment_details_wrapper .left .receiver_account_number_content {
+        border-bottom: 1px solid #222;
+      }
+
+      /* Payment details, right side content */
+      #easy_invoice_wrapper .easy_invoice_payment_details_wrapper .right {
+        border-left: 1px solid #222;
+      }
+
+      #easy_invoice_wrapper .easy_invoice_payment_details_wrapper .right .receiver_bic {
+        padding: 5px;
+        border-bottom: 1px solid #222;
+      }
+
+      #easy_invoice_wrapper .easy_invoice_payment_details_wrapper .right_half_content {
+        display: flex;
+        flex-direction: row;
+        border-left: 1px solid #222;
+      }
+
+      #easy_invoice_wrapper .easy_invoice_payment_details_wrapper .right_half_content .empty_spacer {
+        min-height: 200px;
+      }
+
+      #easy_invoice_wrapper .easy_invoice_payment_details_wrapper .right_half_content .ref_number {
+        padding: 5px;
+        border-right: 1px solid #222;
+        border-top: 1px solid #222;
+        font-size: 10px;
+        flex: 1 1 50%;
+      }
+
+      #easy_invoice_wrapper .easy_invoice_payment_details_wrapper .right_half_content .ref_number_content {
+        padding: 5px 5px 6px 5px;
+        border-top: 1px solid #222;
+        font-size: 14px;
+        flex: 1 1 50%;
+      }
+
+      /* Bottom wrapper */
+      #easy_invoice_wrapper .from_account_wrap {
+        border-top: 1px solid #222;
+        display: flex;
+      }
+
+      #easy_invoice_wrapper .from_account_wrap .left,
+      #easy_invoice_wrapper .from_account_wrap .right {
+        flex: 1 1 50%;
+      }
+
+      #easy_invoice_wrapper .from_account_wrap .right {
+        margin-left: 1px;
+      }
+
+      #easy_invoice_wrapper .from_account_wrap .right .right_half_content_last {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        height: 100%;
+      }
+
+      #easy_invoice_wrapper .from_account_wrap .right .right_half_content_last .left,
+      #easy_invoice_wrapper .from_account_wrap .right .right_half_content_last .right {
+        display: flex;
+        flex-direction: row;
+        flex: 1 1 50%;
+      }
+
+      #easy_invoice_wrapper .from_account_wrap .right .right_half_content_last .left .due_date {
+        padding: 5px;
+        border-right: 1px solid #222;
+        font-size: 10px;
+        flex: 1 1 13px;
+      }
+
+      #easy_invoice_wrapper .from_account_wrap .right .right_half_content_last .left .due_date_content {
+        padding: 5px;
+        font-size: 14px;
+        flex: 2;
+      }     
+      
+      #easy_invoice_wrapper .from_account_wrap .right .right_half_content_last .right .amount {
+        padding: 5px;
+        font-size: 10px;
+        flex: 1;
+      }
+
+      #easy_invoice_wrapper .from_account_wrap .right .right_half_content_last .right .amount_content {
+        padding: 5px;
+        font-size: 14px;
+        flex: 4;
+        justify-content: flex-end;
+        text-align: right;
+      }
+
+      /* Barcode wrapper */
+      #easy_invoice_wrapper .easy_invoice_barcode_wrapper {
+        display: flex;
+        flex-direction: row;
+        padding: 10px;
+      }
+
+      #easy_invoice_wrapper .easy_invoice_barcode_wrapper .left,
+      #easy_invoice_wrapper .easy_invoice_barcode_wrapper .right {
+        flex: 1 1 50%;
+        font-size: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="easy_invoice_wrapper">
+      <div class="easy_invoice_inner_wrapper">
+        <div class="easy_invoice_header_wrapper">
+            <div class="header_left">
+              <div class="sender">
+                Test Company <br>
+                Test Address 1 <br>
+                00100 Helsinki <br>
+                Finland
+              </div>            
+              
+              <div class="receiver">
+                Some Company Oy <br>
+                Test Address 12 <br>
+                00101 Helsinki <br>
+                Finland
+              </div>
+                
+            </div>          
+            <div class="header_right">
+              INVOICE
+              <div class="separator"></div>
+
+              <div class="header_right_wrapper">
+                <div class="left">
+                  Invoice number<br>
+                  Reference<br>
+                  Invoice date<br>
+                  Due date<br>
+                  Payment term<br>
+                  Late payment interest<br>
+                  Receiver VAT number<br>
+                </div>            
+                <div class="right">
+                  12346<br>
+                  123<br>
+                  20.10.2020<br>
+                  20.11.2021<br>
+                  14 days net<br>
+                  7.5%<br>
+                  FI123445<br>
+                </div>
+              </div>
+            </div>
+        </div>
+
+        <div class="easy_invoice_content_wrapper">
+          <div class="products_wrapper">
+            <div class="header">
+              <div class="row_number row"></div>
+              <div class="row_product_number row">Product number</div>
+              <div class="row_description row">Description</div>
+              <div class="row_unit_price row">Unit price</div>
+              <div class="row_qty row">Quantity</div>
+              <div class="row_vat row">VAT %</div>
+              <div class="row_total row">Total €</div>
+            </div>
+
+            <div class="product_row">
+              <div class="row_number row">1.</div>
+              <div class="row_product_number row">1234</div>
+              <div class="row_description row">Some product</div>
+              <div class="row_unit_price row">123,00</div>
+              <div class="row_qty row">1</div>
+              <div class="row_vat row">24</div>
+              <div class="row_total row">123,00</div>
+            </div>
+          </div>
+
+          <div class="totals_col">
+            <div class="left">
+              Total excluding tax €<br>
+              Total tax €<br>
+              Total €<br>
+            </div>            
+            <div class="right">
+              123<br>
+              29,52<br>
+              152,52<br>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="easy_invoice_payment_details_wrapper">
+        <div class="top_header">
+          <div class="row">
+            info@test.org
+          </div>         
+          <div class="row">
+            www.webdata.fi
+          </div>
+          <div class="row">
+            VAT code: 12345-2
+          </div>         
+          <div class="row">
+            VAT number: FI12345
+          </div>
+        </div>
+
+        <div class="content">
+          <div class="content_inner">
+            <div class="left">
+              <div class="receiver_account_number">
+                Receiver account number
+              </div>
+              
+              <div class="receiver_account_number_content">
+                <div style="font-size: 10px;">IBAN</div>
+                FI72 123213 21321321
+              </div>            
+            </div>
+
+            <div class="left">
+              <div class="receiver">
+                Receiver name and address
+              </div>
+              
+              <div class="receiver_address">
+                Test Company <br>
+                Test Address 1 <br>
+                00100 Helsinki <br>
+                Finland
+              </div>    
+            </div>
+
+            <div class="left">
+              <div class="payer">
+                Payer name and address
+              </div>
+              
+              <div class="payer_address">
+                Some Company Oy <br>
+                Test Address 12 <br>
+                00101 Helsinki <br>
+                Finland
+              </div>    
+            </div>
+
+            <div class="left">
+              <div class="receiver_signature">
+                Signature
+              </div>
+              
+              <div class="receiver_signature_content">
+                
+              </div>
+            </div>
+          </div>
+
+          <div class="content_inner">
+            <div class="right">
+              <div class="receiver_bic">
+                <div style="font-size: 10px;">BIC</div>
+                OKOYFIHH
+              </div>
+            </div>          
+            
+            <div class="right_half_content">
+              <div class="empty_spacer"></div>
+            </div>
+
+            <div class="right_half_content">
+              <div class="ref_number">
+                Reference number
+              </div>
+              
+              <div class="ref_number_content">
+                12345678
+              </div>
+            </div>
+          </div>
+          </div>
+
+          <div class="from_account_wrap">
+              <div class="left">
+                <div class="from_account">
+                  From account number
+                </div>
+                
+                <div class="from_account_content">
+                  
+                </div>
+              </div>
+  
+              <div class="right">
+                <div class="right_half_content_last">
+                  <div class="left">
+                    <div class="due_date">
+                      Due date
+                    </div>
+                    
+                    <div class="due_date_content">
+                      20.10.2022
+                    </div>
+                  </div>                
+                  
+                  <div class="right">
+                    <div class="amount">
+                      Amount
+                    </div>
+                    
+                    <div class="amount_content">
+                      123,00€
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+        </div>
+      
+      <div class="easy_invoice_barcode_wrapper">
+        <div class="left">Barcode here</div>
+        <div class="right">The payment is forwarded to the payee in accordance with the terms of payment intermediation and the account number provided by the payer.</div>
+      </div>
+    </div>
+  </body>
+</html>
